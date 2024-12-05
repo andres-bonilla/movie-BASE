@@ -4,48 +4,68 @@ const initialState = {
   words: "",
   type: "any",
   page: 1,
-  index: { first: 0, last: 0 },
-  limit: 0,
+  animation: {
+    in: "fade-in",
+    out: "fade-out",
+  },
 };
 
 export const searchSlice = createSlice({
   name: "search",
   initialState,
   reducers: {
+    setSearch(state, action) {
+      const { words, type, page } = action.payload;
+      const currentPage = Math.abs(state.page);
+
+      const isWordsChanging = words !== undefined && words !== state.words;
+      const isTypeChanging = type && type !== state.type;
+      const isPageChanging = page && page !== currentPage;
+
+      if (isPageChanging) {
+        if (page === currentPage + 1) {
+          state.animation = { in: "right-in", out: "left-out" };
+        } else if (page === currentPage - 1) {
+          state.animation = { in: "left-in", out: "right-out" };
+        }
+        const direction = currentPage - 1 === page ? -1 : 1;
+
+        state.page = direction * page;
+      }
+
+      if (isWordsChanging || isTypeChanging) {
+        state.words = words !== undefined ? words : state.words;
+        state.type = type || state.type;
+        state.animation = { in: "fade-in", out: "fade-out" };
+        if (!isPageChanging) state.page = 1;
+      }
+    },
     setWords(state, action) {
       state.words = action.payload;
-      state.index = { first: 0, last: 0 };
-      console.log([0, 0]);
+      state.animation = initialState.animation;
     },
     setType(state, action) {
       state.type = action.payload;
-      state.index = { first: 0, last: 0 };
-      console.log([0, 0]);
+      state.animation = initialState.animation;
     },
     setPage(state, action) {
-      if (
-        Math.abs(state.page) + 1 !== action.payload &&
-        Math.abs(state.page) - 1 !== action.payload
-      ) {
-        state.index = { first: 0, last: 0 };
-        console.log([0, 0]);
+      const currentPage = Math.abs(action.payload);
+      if (page === currentPage + 1) {
+        newAnimation = { in: "right-in", out: "left-out" };
+      } else if (page === currentPage - 1) {
+        newAnimation = { in: "left-in", out: "right-out" };
       }
 
-      const fitter = Math.abs(state.page) - 1 === action.payload ? -1 : 1;
+      if (state.animation.in !== newAnimation.in)
+        state.animation = newAnimation;
 
-      state.page = fitter * action.payload;
-    },
-    setIndex(state, action) {
-      console.log(action.payload);
-      state.index = action.payload;
-    },
-    setLimit(state, action) {
-      state.limit = action.payload;
+      const direction = currentPage - 1 === action.payload ? -1 : 1;
+
+      state.page = direction * action.payload;
     },
   },
 });
 
-export const { setWords, setType, setPage, setIndex, setLimit } =
-  searchSlice.actions;
+export const { setSearch, setWords, setType, setPage } = searchSlice.actions;
 
 export default searchSlice.reducer;

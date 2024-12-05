@@ -1,67 +1,62 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
 
-import { setPage, setType, setWords } from "../store/searchSlice";
+import { useQuerySetter } from "../hooks/useQuerySetter";
+import { parseSearchParams } from "../helpers/parseSearchParams";
 
-import { useQuery } from "../utils/useQuery";
-
-export const Search = ({ isDetails }) => {
-  const dispatch = useDispatch();
+export const Search = ({ withMargin }) => {
+  const { pathname, search } = useLocation();
+  const { setQueryWords } = useQuerySetter();
   const navigate = useNavigate();
-  const location = useLocation();
 
   const [endSpace, setEndSpace] = useState(false);
-  const { type, words, page } = useSelector((state) => state.search);
-  const { query, setQueryWords } = useQuery();
+  const [words, setWords] = useState("");
+  const debounceRef = useRef();
 
   useEffect(() => {
-    const queryType = Object.keys(Object.fromEntries(query.entries()))[0];
+    if (!pathname.includes("search")) clearTimeout(debounceRef.current);
+    setWords(parseSearchParams(search).words);
+  }, [pathname, search]);
 
-    if (!query.get(queryType) && location.pathname.indexOf("search") !== -1)
-      navigate(`/search`);
+  const debounceSetQueryWords = newWord => {
+    clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => {
+      if (pathname.includes("search")) setQueryWords(newWord);
+      else navigate(`/search?any=${newWord}&on=1`);
+    }, 500);
+  };
 
-    const newWord = query.get(queryType)?.replaceAll("+", " ") || "";
-    const newType = queryType || "any";
-    const newPage = Number(query.get("on")) || 1;
-
-    if (Math.abs(page) !== newPage) dispatch(setPage(newPage));
-    else if (type !== newType || words !== newWord) dispatch(setPage(1));
-
-    if (type !== newType) dispatch(setType(newType));
-
-    if (words !== newWord) dispatch(setWords(newWord));
-  }, [query]);
-
-  const wordsHandler = (e) => {
+  const wordsHandler = e => {
     e.preventDefault();
     let value = e.target.value;
 
     if (!value || value === " ") {
+      clearTimeout(debounceRef.current);
+      setWords("");
       navigate(`/search`);
       return;
     }
+
     setEndSpace(value.endsWith(" "));
     value = value.endsWith(" ") ? value.trim() : value;
 
-    if (location.pathname.indexOf("search") !== -1) setQueryWords(value);
-    else navigate(`/search?${type}=${value}&on=1`);
+    setWords(value);
+    debounceSetQueryWords(value);
   };
 
   return (
     <form
-      id="search-form"
+      className={`search-form ${withMargin}`}
       target="search"
       onSubmit={wordsHandler}
-      className={isDetails ? "with-left-space" : ""}
     >
       <input
-        id="search"
+        className="search"
         onChange={wordsHandler}
         value={endSpace ? words + " " : words}
         type="text"
         name="words"
-        placeholder="Search..."
+        placeholder="Buscar..."
       />
     </form>
   );
