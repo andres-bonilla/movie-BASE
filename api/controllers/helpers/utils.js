@@ -1,5 +1,22 @@
-exports.resError = (res, { status, message }) =>
-  res.status(status || 500).send({ message });
+exports.resError = (res, { status, message }) => {
+  const statusCode = status || 500;
+  let customMessage = message || "An unexpected error occurred.";
+
+  if (status === 400) {
+    customMessage = "Invalid parameters.";
+  } else if (status === 404) {
+    customMessage = "Page not found.";
+  } else if (status === 500) {
+    customMessage = "Internal server error.";
+  }
+
+  res.status(statusCode).send({
+    message: customMessage,
+    response: {
+      status: statusCode,
+    },
+  });
+};
 
 exports.initRules = (amount, page, tmdbIndex, sameIndex = false) => {
   let prevIndex;
