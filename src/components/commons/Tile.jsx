@@ -1,22 +1,41 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { useImgUrl } from "../../utils/useImgUrl";
+import { TileIndicators } from "./TileIndicators";
+
+import { ImageLoader } from "../utils/ImageLoader";
 
 export const Tile = ({ item }) => {
-  const imgUrl = useImgUrl(
-    item.img,
-    item.mediaType === "person" ? "profile" : "poster",
-    "medium"
-  );
+  const { id, name, img, mediaType, stars, startOn } = item;
 
-  const linkUrl = `/details/${item.mediaType}/${item.id}`;
+  const imgConfig = {
+    img: img,
+    type: mediaType === "person" ? "profile" : "poster",
+    width: "medium",
+  };
+
+  const linkUrl = `/details/${mediaType}/${id}`;
+
+  const realizedOn = mediaType !== "person" && startOn.length ? startOn[0] : "";
 
   return (
-    <Link to={linkUrl} className="no-link-style tile-link">
-      <img src={imgUrl} alt={item.name} className="m-img" />
+    <Link to={linkUrl} className="tile-link no-link-style ">
+      <figure className={`tile with-shadow ${mediaType}-mode`}>
+        <TileIndicators
+          rating={stars}
+          media={mediaType}
+          realized={realizedOn}
+        />
 
-      <h3 className="m-title">{item.name}</h3>
+        <ImageLoader
+          imgConfig={imgConfig}
+          name={name}
+          loader="tile"
+          className="tile-img fade-in"
+        />
+
+        <figcaption className="tile-label">{name}</figcaption>
+      </figure>
     </Link>
   );
 };
