@@ -1,6 +1,7 @@
 const urlTmdb = "https://api.themoviedb.org/3",
   apiKey = "api_key=22d3fd94d0f9fd60515cd799770db756",
-  apiLang = "language=es-MX";
+  apiLang = "language=es-MX",
+  extras = "similar,recommendations,credits,videos,watch/providers";
 
 exports.urlSearchMaker = (mediaType, words, page = "1") =>
   `${urlTmdb}/search/${mediaType}?query=${words}&${apiKey}&${apiLang}&page=${page}`;
@@ -9,7 +10,7 @@ exports.urlIdMaker = (mediaType, id) => {
   if (mediaType === "person") {
     return `${urlTmdb}/${mediaType}/${id}?append_to_response=combined_credits&${apiKey}&${apiLang}`;
   } else {
-    return `${urlTmdb}/${mediaType}/${id}?append_to_response=similar,videos&${apiKey}&${apiLang}`;
+    return `${urlTmdb}/${mediaType}/${id}?append_to_response=${extras}&${apiKey}&${apiLang}`;
   }
 };
 

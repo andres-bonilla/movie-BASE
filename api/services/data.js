@@ -3,7 +3,6 @@ const { urlImgDataMaker, urlTopListMaker } = require("./helpers/urlMakers");
 const { filterList } = require("./helpers/filters");
 
 const filterImgData = ({ images }) => {
-  //console.log(images, "---------IMG");
   return {
     url: images["base_url"],
     secureUrl: images["secure_base_url"],
@@ -20,31 +19,25 @@ const filterImgData = ({ images }) => {
 exports.imgData = () => {
   return axios
     .get(urlImgDataMaker())
-    .then((res) => filterImgData(res.data))
-    .then((data) => ({ error: false, data: data }))
-    .catch((err) => {
-      console.log(err);
-      return { error: true, data: err };
-    });
+    .then(res => filterImgData(res.data))
+    .then(data => ({ error: false, data }))
+    .catch(err => ({ error: true, data: err }));
 };
 
 exports.topLists = () => {
   const reqs = [];
 
   urlTopListMaker().map(({ media, name, url }) =>
-    reqs.push(axios.get(url).then((res) => ({ media, name, data: res.data })))
+    reqs.push(axios.get(url).then(res => ({ media, name, data: res.data })))
   );
 
   return Promise.all(reqs)
-    .then((allRes) =>
+    .then(allRes =>
       allRes.map(({ media, name, data }) => ({
         name,
         list: filterList(data.results.slice(0, 10), media),
       }))
     )
-    .then((data) => ({ error: false, data: data }))
-    .catch((err) => {
-      console.log(err);
-      return { error: true, data: err };
-    });
+    .then(data => ({ error: false, data }))
+    .catch(err => ({ error: true, data: err }));
 };
