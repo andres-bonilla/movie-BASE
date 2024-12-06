@@ -1,5 +1,5 @@
 const urlTmdb = "https://api.themoviedb.org/3",
-  apiKey = "api_key=" + process.env.TMDB_API_KEY,
+  apiKey = `api_key=${process.env.TMDB_API_KEY}`,
   apiLang = "language=es-MX",
   extras = "similar,recommendations,credits,videos,watch/providers";
 
@@ -34,4 +34,4 @@ exports.urlTopListMaker = () => [
   },
 ];
 
-// `${urlTmdb}/movie/latest?${apiKey}&${apiLang}`,
+//    `${urlTmdb}/movie/latest?${apiKey}&${apiLang}`,
