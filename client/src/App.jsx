@@ -24,7 +24,7 @@ export const App = () => {
 
   const { status, data, error } = useApi({
     method: "get",
-    url: "/data/img_data",
+    url: "/api/data/img_data",
   });
 
   useEffect(() => {
