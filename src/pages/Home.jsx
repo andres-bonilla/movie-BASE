@@ -1,38 +1,42 @@
 import React from "react";
 
-import { List } from "../components/commons/List.jsx";
+import { Slider } from "../components/commons/Slider.jsx";
 import { Hero } from "../components/Hero.jsx";
 
-import { useAxios } from "../utils/useAxios.jsx";
+import { useApi } from "../hooks/useApi.jsx";
+
+import { getContentByStatus } from "../helpers/getContentByStatus.jsx";
 
 export const Home = () => {
-  const { loading, data } = useAxios({
-    method: "get",
-    url: `/api/data/top_lists`,
-  });
+  const { status, data, error } = useApi(
+    {
+      method: "get",
+      url: `/api/data/top_lists`,
+    },
+    700 /*animated transition - out duration*/
+  );
 
-  if (loading) return <p>Cargando...</p>;
+  const noData = !data || data.length === 0;
+  const contentByStatus = getContentByStatus("home", status, error, noData);
+  const animation = status === "delaying" ? "bottom-out" : "bottom-in";
 
-  if (!data) return <p>404</p>;
-
-  const mapTops = (tops) =>
-    tops.map((item, i) => {
-      if (i === 0) return;
-      return (
-        <List
-          key={item.name + i}
-          data={item.list}
-          titleText={item.name}
-          boxClass={"list-container"}
-          titleClass={`l-title ${i === 1 ? "home-first" : ""}`}
-        />
-      );
-    });
+  const topList = (item, i) => {
+    /*if (i === 0) return;*/
+    return (
+      item.list.length !== 0 && (
+        <div key={item.name + i} className={`top-list ${animation}`}>
+          <Slider key={item.name + i} title={item.name} list={item.list} />
+        </div>
+      )
+    );
+  };
 
   return (
-    <>
-      <Hero list={data[0].list} />
-      {mapTops(data)}
-    </>
+    contentByStatus || (
+      <>
+        {/*<Hero list={data[0].list} />*/}
+        {data.map(topList)}
+      </>
+    )
   );
 };
