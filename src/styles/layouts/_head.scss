@@ -1,14 +1,6 @@
 @use "../variables" as *;
 
-.float {
-  position: fixed !important;
-}
-.with-shadow {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 3px 10px;
-}
-
 #head {
-  z-index: 10;
   position: absolute;
   top: 0;
   display: flex;
@@ -18,17 +10,37 @@
   height: 72px;
   padding: 0px 10vw;
 
-  background: $back_color;
+  background: var(--alter_color);
   transition: box-shadow 0.5s;
 }
 
 #mb-logo {
   height: 40px;
   margin-top: 4px;
-  margin-left: 60px;
+  fill: var(--main_color);
+  /*margin-left: 60px;*/
+}
+
+#small-mb-logo {
+  display: none;
+  margin-top: 4px;
+  height: 40px;
+}
+
+@media (max-width: 480px) {
+  #mb-logo {
+    display: none;
+  }
+
+  #small-mb-logo {
+    display: initial;
+  }
 }
 @media (max-width: 768px) {
-  #mb-logo {
-    margin-left: max(16px, 5vw);
+  #head {
+    padding: 0px 5vw;
   }
+  /*#mb-logo {
+    margin-left: max(16px, 5vw);
+  }*/
 }

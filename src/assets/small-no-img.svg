@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 128 160" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <style bx:fonts="Anta">@import url(https://fonts.googleapis.com/css2?family=Anta%3Aital%2Cwght%400%2C400&amp;display=swap);</style>
+  </defs>
+  <path d="M 0 0 L 25.6 0 L 25.6 160 L 0 160 L 0 0 Z" style="fill: rgb(204, 204, 204); opacity: 0.2;"/>
+  <path d="M 25.6 0 L 51.2 0 L 51.2 160 L 25.6 160 L 25.6 0 Z" style="fill: rgb(166, 166, 166); opacity: 0.2;"/>
+  <path d="M 51.2 0 L 76.8 0 L 76.8 160 L 51.2 160 L 51.2 0 Z" style="fill: rgb(115, 115, 115); opacity: 0.2;"/>
+  <path d="M 76.8 0 L 102.4 0 L 102.4 160 L 76.8 160 L 76.8 0 Z" style="fill: rgb(77, 77, 77); opacity: 0.2;"/>
+  <path d="M 102.4 0 L 128 0 L 128 160 L 102.4 160 L 102.4 0 Z" style="fill: rgb(38, 38, 38); opacity: 0.2;"/>
+  <text style="fill: rgba(51, 51, 51, 0.3); font-family: Anta; font-size: 16px; text-anchor: middle; white-space: pre;" x="64" y="85.547">No image</text>
+</svg>

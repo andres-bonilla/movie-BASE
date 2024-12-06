@@ -4,11 +4,13 @@ import { Link, useLocation } from "react-router-dom";
 import { Search } from "../components/Search";
 
 import MBLogo from "../assets/mb.svg?react";
+import SmallMBLogo from "../assets/small-mb.svg?react";
 
-export const Head = () => {
-  const location = useLocation();
+export const Head = ({ colorMode }) => {
+  const { pathname } = useLocation();
   const [isFloat, setIsFloat] = useState(false);
   const [isDetails, setIsDetails] = useState(false);
+  const [isHome, setIsHome] = useState(false);
 
   useLayoutEffect(() => {
     const handleScroll = () => {
@@ -21,18 +23,25 @@ export const Head = () => {
   }, []);
 
   useEffect(() => {
-    setIsDetails(location.pathname.indexOf("details") !== -1);
-  }, [location]);
+    setIsDetails(pathname.indexOf("details") !== -1);
+    setIsHome(pathname === "/");
+  }, [pathname]);
+
+  const floatWithShadow = isFloat && !isDetails ? "float with-shadow" : "";
 
   return (
-    <header
-      id="head"
-      className={isFloat && !isDetails ? "float with-shadow" : ""}
-    >
-      <Link to="/" className={isDetails ? "float" : ""}>
-        <MBLogo id="mb-logo" />
+    <header id="head" className={`${colorMode} ${floatWithShadow}`}>
+      <Link
+        to="/"
+        className={isDetails ? "logo-on-details" : isHome ? "disable-link" : ""}
+      >
+        <MBLogo id="mb-logo" className={!isDetails ? "fade-in-large" : ""} />
+        <SmallMBLogo
+          id="small-mb-logo"
+          className={!isDetails ? "fade-in-large" : ""}
+        />
       </Link>
-      <Search isDetails={isDetails} />
+      <Search withMargin={isDetails ? "with-left-space" : ""} />
     </header>
   );
 };

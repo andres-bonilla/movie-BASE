@@ -17,7 +17,7 @@ exports.anyByWords = (req, res) => {
   };
   search
     .anyByWords(words, stPage, rules)
-    .then(({ err, data }) => (err ? resError(res, data) : res.send(data)));
+    .then(({ error, data }) => (error ? resError(res, data) : res.send(data)));
 };
 
 exports.movieOrTvByWords = (req, res) => {
@@ -36,7 +36,7 @@ exports.movieOrTvByWords = (req, res) => {
   };
   search
     .movieOrTvByWords(words, stPage, rules)
-    .then(({ err, data }) => (err ? resError(res, data) : res.send(data)));
+    .then(({ error, data }) => (error ? resError(res, data) : res.send(data)));
 };
 
 exports.movieByWords = (req, res) => {
@@ -53,7 +53,7 @@ exports.movieByWords = (req, res) => {
 
   search
     .movieByWords(words, stPage, rules)
-    .then(({ err, data }) => (err ? resError(res, data) : res.send(data)));
+    .then(({ error, data }) => (error ? resError(res, data) : res.send(data)));
 };
 
 exports.tvByWords = (req, res) => {
@@ -72,7 +72,7 @@ exports.tvByWords = (req, res) => {
   };
   search
     .tvByWords(words, stPage, rules)
-    .then(({ err, data }) => (err ? resError(res, data) : res.send(data)));
+    .then(({ error, data }) => (error ? resError(res, data) : res.send(data)));
 };
 
 exports.personByWords = (req, res) => {
@@ -89,5 +89,5 @@ exports.personByWords = (req, res) => {
 
   search
     .personByWords(words, stPage, rules)
-    .then(({ err, data }) => (err ? resError(res, data) : res.send(data)));
+    .then(({ error, data }) => (error ? resError(res, data) : res.send(data)));
 };

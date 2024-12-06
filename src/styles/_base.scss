@@ -1,5 +1,7 @@
 @use "./variables" as *;
 
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
 html {
   scroll-behavior: smooth;
 }
@@ -9,10 +11,16 @@ body {
   margin: 0;
   scrollbar-gutter: stable both-edges;
 
-  font-family: $font_fallback;
+  font-family: "Montserrat", $font_fallback;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-optical-sizing: auto;
 
-  background-color: $back_color;
+  &:has(.light-mode) {
+    background-color: #fdf6ec;
+  }
+
+  &:has(.dark-mode) {
+    background-color: #262626;
+  }
 }

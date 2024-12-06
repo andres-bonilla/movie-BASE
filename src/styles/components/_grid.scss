@@ -1,10 +1,10 @@
-#grid {
+.grid {
   display: grid;
   gap: 16px;
   justify-content: center;
 }
 
-$map: (
+$media: (
   0: 2,
   580: 3,
   950: 4,
@@ -13,12 +13,12 @@ $map: (
   2040: 7,
 );
 
-@each $media, $val in $map {
-  @media (min-width: #{ $media }px) {
-    #grid {
+@each $size, $column in $media {
+  @media (min-width: #{ $size }px) {
+    .grid {
       grid-template-columns: repeat(
         auto-fill,
-        calc((100% - 16px * ($val - 1)) / $val)
+        calc((100% - 16px * ($column - 1)) / $column)
       );
     }
   }

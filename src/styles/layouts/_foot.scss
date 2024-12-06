@@ -3,18 +3,60 @@
 #foot {
   display: flex;
   width: 100%;
-  padding: 32px;
-  justify-content: end;
+  flex-direction: column;
+  align-items: center;
+  padding: 48px 0px;
+
+  background: var(--highlight_color);
+  box-shadow: inset rgba(0, 0, 0, 0.35) 0px 15px 10px -10px;
+}
+
+.label {
+  font-size: 15px;
+  line-height: 18px;
+  font-weight: 500;
+
+  color: var(--main_color);
+}
+
+#portfolio {
+  display: flex;
+  align-items: flex-start;
   gap: 16px;
 
-  background: $text_color;
+  #portfolio-logo {
+    height: 84px;
+    fill: var(--red);
+    transition: fill 0.4s;
+  }
+  #name {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    color: var(--red);
+    transition: color 0.4s;
+  }
 }
-#label-tmdb {
-  line-height: 24px;
-  font-weight: 700;
 
-  color: $back_color;
+#portfolio:hover {
+  #portfolio-logo {
+    fill: var(--main_color);
+  }
+  #name {
+    color: var(--main_color);
+  }
 }
-#tmdb-logo {
-  height: 24px;
+
+#rights {
+  margin: 8px 0px 48px 0px;
+}
+
+#tmdb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  #tmdb-logo {
+    height: 15px;
+  }
 }

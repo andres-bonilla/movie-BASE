@@ -1,55 +1,66 @@
 import React from "react";
 import { useParams } from "react-router";
 
-import { List } from "../components/commons/List";
+import { Belt } from "../components/Belt.jsx";
+import { Info } from "../components/Info.jsx";
+import { Related } from "../components/Related.jsx";
 
-import { useAxios } from "../utils/useAxios.jsx";
-import { useImgUrl } from "../utils/useImgUrl.jsx";
+import { useApi } from "../hooks/useApi.jsx";
+
+import { getContentByStatus } from "../helpers/getContentByStatus.jsx";
+
+const validateParams = (type, id) => {
+  const validTypes = ["any", "movie", "tv", "person"];
+  const numId = Number(id);
+
+  const isValidType = validTypes.includes(type);
+  const isValidId = id && Number.isInteger(numId) && numId > 0;
+  return isValidType && isValidId;
+};
 
 export const Details = () => {
   const { type, id } = useParams();
+  const hasValidParams = validateParams(type, id);
 
-  const noParams = type === undefined || id === undefined;
+  const { status, data, error } = useApi(
+    {
+      method: "get",
+      url: hasValidParams ? `/api/${type}/${id}` : "",
+    },
+    700 /*animated transition - out duration*/
+  );
 
-  const { loading, data } = useAxios({
-    method: "get",
-    url: noParams ? "" : `/api/${type}/${id}`,
-  });
-
-  const imgUrl = useImgUrl(data ? data.img : "", "poster", "large");
-
-  if (noParams) return <p>Tipo o ID erroneos</p>;
-
-  if (loading) return <p>Cargando...</p>;
-
-  if (!data) return <p>Este elemento no existe. Lo siento</p>;
-
-  const mapDescription = (description) => {
-    if (description[0] === "") return <p>No hay descripción</p>;
-
-    return description.map((text, i) =>
-      text !== "" ? <p key={i}>{text}.</p> : <></>
-    );
-  };
+  const contentByStatus = getContentByStatus(
+    "details",
+    hasValidParams ? status : "error",
+    hasValidParams ? error : { type: "400", message: "" },
+    !data
+  );
 
   return (
-    <>
-      <div className="poster">
-        <img src={imgUrl} alt={data.name} className="m-img" />
-      </div>
-      <div className="details with-left-space">
-        <h1 className="details-title">{data.name}</h1>
-        {mapDescription(data.description)}
-      </div>
-
-      {data.related.length && (
-        <List
-          data={data.related}
-          titleText="Relacionados"
-          boxClass={"related-container with-left-space"}
-          titleClass={"related-title with-left-space"}
+    contentByStatus || (
+      <>
+        <Belt
+          imgType={type !== "person" ? "poster" : "profile"}
+          name={data.name}
+          img={data.img}
+          providers={data?.providers ?? null}
+          animation={status === "delaying" ? "left-out" : "left-in"}
         />
-      )}
-    </>
+        <Info
+          name={data.name}
+          description={data.description}
+          trailer={data?.trailer ?? ""}
+          cast={data?.cast ?? []}
+          crew={data?.crew ?? []}
+          animation={status === "delaying" ? "right-out" : "right-in"}
+        />
+        <Related
+          type={type}
+          related={data.related}
+          animation={status === "delaying" ? "right-out" : "right-in"}
+        />
+      </>
+    )
   );
 };

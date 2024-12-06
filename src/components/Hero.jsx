@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 
-import { List } from "./commons/List";
-
-import { useImgUrl } from "../utils/useImgUrl";
+import { Slider } from "./commons/Slider";
+import { useImgUrl } from "../hooks/useImgUrl";
 
 export const Hero = ({ list }) => {
   const imgIndex = 3;
@@ -13,7 +12,7 @@ export const Hero = ({ list }) => {
     <div id="hero" style={{ "--back_img_url": `url("${backImgUrl}")` }}>
       <img src={imgUrl} className="hero-img" />
 
-      <List data={list} boxClass={"hero-list-container"} />
+      <Slider data={list} boxClass={"hero-list-container"} />
     </div>
   );
 };

@@ -1,12 +1,12 @@
-.home-first {
-  margin-top: 450px;
-}
-
-.list-container {
-  margin-bottom: 72px;
-  overflow-x: hidden;
-
-  .list {
-    width: clamp(1704px, 230%, 2544px);
+.top-list {
+  margin: 32px 0px;
+  h3 {
+    margin: 72px 0px 32px 0px;
+    font-size: 1.9rem;
+    line-height: 2.25rem;
+    font-weight: 600;
+  }
+  .slider {
+    height: 45vh;
   }
 }

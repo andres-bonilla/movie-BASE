@@ -1,14 +1,14 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import { useQuery } from "../utils/useQuery";
+import { useQuerySetter } from "../hooks/useQuerySetter";
 
 export const Tabs = () => {
-  const type = useSelector((state) => state.search.type);
-  const { setQueryType } = useQuery();
+  const { type } = useSelector(state => state.search);
+  const { setQueryType } = useQuerySetter();
   const tabTypes = {
     eng: ["any", "movie", "tv", "person"],
-    esp: ["Todo", "Pelicula", "TV", "Persona"],
+    esp: ["Todo", "Pelicula", "Serie", "Persona"],
   };
 
   const checkHandler = ({ checked }, name) => {
@@ -23,21 +23,25 @@ export const Tabs = () => {
     setQueryType(value);
   };
 
-  return (
-    <header id="tabs">
-      {tabTypes.eng.map((tab, i) => {
-        return (
-          <label key={i} className="tab">
-            <input
-              onChange={(e) => checkHandler(e.target, tab)}
-              checked={type.indexOf(tab) !== -1}
-              type="checkbox"
-              name={tab}
-            />
-            <span>{tabTypes.esp[i]}</span>
-          </label>
-        );
-      })}
-    </header>
-  );
+  const tabItem = (item, i) => {
+    return (
+      <label
+        key={i}
+        className="button with-text tab"
+        tabIndex="0"
+        role="button"
+      >
+        <input
+          onChange={e => checkHandler(e.target, item)}
+          checked={type.indexOf(item) !== -1}
+          type="checkbox"
+          name={item}
+          className="hidden"
+        />
+        <span>{tabTypes.esp[i]}</span>
+      </label>
+    );
+  };
+
+  return <header className="tabs">{tabTypes.eng.map(tabItem)}</header>;
 };

@@ -1,0 +1,70 @@
+@use "../variables" as *;
+
+.belt {
+  position: absolute;
+  width: $belt_width;
+  height: 100%;
+
+  .buckle {
+    position: sticky;
+    top: 88px;
+    width: 100%;
+  }
+}
+
+.poster {
+  z-index: 12;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  max-height: 50vh;
+  border-radius: 16px 16px 0px 0px;
+  margin-bottom: 32px;
+}
+
+.providers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin: 0px;
+  margin-bottom: 32px;
+}
+
+.provider-pin {
+  height: clamp(30px, 5vh, 64px);
+  .pin {
+    outline: 3px solid transparent;
+    transition: outline 0.3s;
+  }
+  span {
+    display: none;
+  }
+}
+
+.provider-pin:hover {
+  .pin {
+    outline: 3px solid var(--main_color);
+  }
+}
+
+@media (max-width: 950px) {
+  .belt {
+    position: static;
+    width: 100%;
+    height: auto;
+
+    .buckle {
+      position: static;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  .poster {
+    width: auto;
+    height: 50vh;
+    max-height: 500px;
+    aspect-ratio: 2 / 3;
+  }
+}

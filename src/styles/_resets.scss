@@ -1,3 +1,5 @@
+@use "./variables" as *;
+
 html,
 *,
 *:before,
@@ -8,7 +10,10 @@ html,
 }
 
 #root {
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  min-height: calc(100vh + 275px);
   margin: 0;
 }
 
@@ -23,9 +28,9 @@ button {
 }
 button:focus {
   outline: revert;
+  outline-color: var(--main_color);
 }
 
-.no-link-style {
-  color: inherit;
-  text-decoration: none;
+figure {
+  margin: 0;
 }

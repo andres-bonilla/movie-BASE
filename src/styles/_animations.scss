@@ -1,9 +1,133 @@
-@keyframes showing {
+@use "./variables" as *;
+
+@keyframes fadePulse {
   0%,
-  20% {
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  70%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes fadeIn {
+  0% {
     opacity: 0;
   }
   100% {
     opacity: 1;
   }
+}
+@keyframes rightOut {
+  0% {
+    transform: translateX(0);
+  }
+  70%,
+  100% {
+    transform: translateX(100vw);
+  }
+}
+@keyframes rightIn {
+  0%,
+  30% {
+    transform: translateX(100vw);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes leftOut {
+  0% {
+    transform: translateX(0);
+  }
+  70%,
+  100% {
+    transform: translateX(-100vw);
+  }
+}
+@keyframes leftIn {
+  0%,
+  30% {
+    transform: translateX(-100vw);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes topOut {
+  0% {
+    transform: translateY(0);
+  }
+  70%,
+  100% {
+    transform: translateY(-100vh);
+  }
+}
+@keyframes topIn {
+  0%,
+  30% {
+    transform: translateY(-100vh);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes bottomOut {
+  0% {
+    transform: translateY(0);
+  }
+  70%,
+  100% {
+    transform: translateY(100vh);
+  }
+}
+@keyframes bottomIn {
+  0%,
+  30% {
+    transform: translateY(100vh);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.fade-out {
+  animation: fadeOut 0.7s;
+}
+.fade-in {
+  animation: fadeIn 0.7s;
+}
+.fade-in-large {
+  animation: fadeIn 2s;
+}
+.right-out {
+  animation: rightOut 0.7s;
+}
+.right-in {
+  animation: rightIn 0.7s;
+}
+.left-out {
+  animation: leftOut 0.7s;
+}
+.left-in {
+  animation: leftIn 0.7s;
+}
+.top-out {
+  animation: topOut 0.7s;
+}
+.top-in {
+  animation: topIn 0.7s;
+}
+.bottom-out {
+  animation: bottomOut 0.7s;
+}
+.bottom-in {
+  animation: bottomIn 0.7s;
 }

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { secureUrl: null, sizes: null };
+const initialState = { secureUrl: "", sizes: null };
 
 export const imgSlice = createSlice({
   name: "img",

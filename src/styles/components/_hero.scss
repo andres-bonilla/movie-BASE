@@ -34,9 +34,9 @@
   width: clamp(692px, 90.75vw, 714px);
   background: linear-gradient(
     to right,
-    $back_color 15%,
+    var(--alter_color) 15%,
     transparent 45%,
-    $back_color 95%
+    var(--alter_color) 95%
   );
 }
 

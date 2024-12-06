@@ -1,34 +1,36 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import { useQuery } from "../utils/useQuery";
+import { useQuerySetter } from "../hooks/useQuerySetter";
 
-export const PageNav = ({ noMore }) => {
-  const page = useSelector((state) => Math.abs(state.search.page));
-  const { setQueryPage } = useQuery();
+import Arrow from "../assets/arrow.svg?react";
+
+export const PageNav = ({ noMore, animation }) => {
+  const page = useSelector(state => Math.abs(state.search.page));
+  const { setQueryPage } = useQuerySetter();
 
   return (
-    <footer id="page-nav">
+    <footer className={`page-nav ${animation}`}>
       <button
-        className={`button ${page === 1 ? "disabled" : ""}`}
         type="button"
         name="Previous"
         disabled={page === 1}
         onClick={() => setQueryPage(page - 1)}
+        className={`button with-icon ${page === 1 ? "disabled" : ""}`}
       >
-        Anterior
+        <Arrow className="icon rotate-180" />
       </button>
 
-      <span id="page-num">{page}</span>
+      <span className="page-num">{page}</span>
 
       <button
-        className={`button ${noMore ? "disabled" : ""}`}
         type="button"
         name="Next"
         disabled={noMore}
         onClick={() => setQueryPage(page + 1)}
+        className={`button with-icon ${noMore ? "disabled" : ""}`}
       >
-        Siguiente
+        <Arrow className="icon" />
       </button>
     </footer>
   );
