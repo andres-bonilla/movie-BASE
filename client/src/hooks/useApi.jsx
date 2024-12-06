@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import apiClient from "../helpers/axiosClient";
+import axios from "axios";
 
 export const useApi = (config, delay = 0) => {
   // "idle", "delaying", "loading", "success", "error"
@@ -72,8 +73,7 @@ export const useApi = (config, delay = 0) => {
         })
         .catch(reqError => {
           // Ignore AbortController error by unmount
-          if (apiClient.isCancel(reqError))
-            return clearInterval(statusByInterval);
+          if (axios.isCancel(reqError)) return clearInterval(statusByInterval);
 
           handleError(reqError);
         });
