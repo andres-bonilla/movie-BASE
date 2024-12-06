@@ -1,0 +1,83 @@
+@use "../variables" as *;
+
+.info {
+  font-size: 1.25rem;
+  line-height: 1.6rem;
+  font-weight: 500;
+
+  color: var(--main_color);
+
+  p {
+    margin: 0;
+    margin-top: 0.75rem;
+  }
+
+  h3 {
+    margin: 72px 0px 32px 0px;
+    font-size: 1.9rem;
+    line-height: 2.25rem;
+    font-weight: 600;
+  }
+}
+
+.info-title {
+  font-size: 2.5rem;
+  line-height: 3rem;
+  font-weight: 600;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 2rem;
+}
+
+.credits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 0px;
+
+  .person-pin {
+    --diameter: clamp(64px, 10vw, 120px);
+    width: 328px;
+    height: var(--diameter);
+
+    .pin {
+      outline: 4px solid transparent;
+      transition: outline 0.2s;
+    }
+    span {
+      width: calc(100% - var(--diameter) - 20px);
+      text-overflow: ellipsis;
+      color: var(--main_color);
+      transition: color 0.2s;
+    }
+    img {
+      margin-top: calc(var(--diameter) / -8);
+    }
+  }
+}
+
+.person-pin:hover {
+  .pin {
+    outline: 4px solid var(--yellow);
+  }
+  span {
+    color: var(--yellow);
+  }
+}
+
+.video-box {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 0px 0px 48px 0px;
+  border-radius: 16px;
+  background: var(--highlight_color);
+  box-shadow: inset 0px 0px 16px -8px rgba(0, 0, 0, 0.75);
+
+  .yt-video {
+    width: min(100%, 768px);
+    border: none;
+    aspect-ratio: 16 / 9;
+  }
+}
