@@ -25,7 +25,7 @@ export const Details = () => {
   const { status, data, error } = useApi(
     {
       method: "get",
-      url: hasValidParams ? `/api/${type}/${id}` : "",
+      url: hasValidParams ? `/${type}/${id}` : "",
     },
     700 /*animated transition - out duration*/
   );

@@ -7,10 +7,11 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://moviebase-api.onrender.com",
+        target: process.env.VITE_MOVIEBASE_API_URL || "http://localhost:3001",
         changeOrigin: true,
         secure: false,
         ws: true,
+        rewrite: path => path.replace(/^\/api/, ""),
       },
     },
     port: process.env.NODE_ENV === "development" ? "3000" : undefined,

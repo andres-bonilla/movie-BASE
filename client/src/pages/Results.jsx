@@ -35,7 +35,7 @@ export const Results = () => {
 
   const apiUrl =
     words && hasValidParams
-      ? `/api/search/${type}?by_words=${words}&on_page=${page}&amount=${length}`
+      ? `/search/${type}?by_words=${words}&on_page=${page}&amount=${length}`
       : "";
 
   const { status, data, error } = useApi(
