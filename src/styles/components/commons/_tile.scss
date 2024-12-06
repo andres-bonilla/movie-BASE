@@ -1,33 +1,73 @@
 @use "../../variables" as *;
-@use "../../animations" as *;
 
 .tile {
-  width: 100%;
-  background: white;
-  border-radius: 16px 16px 0px 0px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 3px 10px;
-  animation: showing 1s;
-}
-
-.tile-link {
-  width: 100%;
-}
-
-.m-img {
-  width: 100%;
-  aspect-ratio: 2 / 3;
-  border-radius: 16px 16px 0px 0px;
-  animation: showing 1s;
-}
-
-.m-title {
-  margin: 0;
-  padding: 0px 8px;
+  position: relative;
   overflow: hidden;
-  text-wrap: nowrap;
-  text-overflow: ellipsis;
-  line-height: 32px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  aspect-ratio: 2 / 3;
+  border-radius: 16px 16px 0 0;
 
-  color: $text_color;
+  .tile-img {
+    z-index: 1;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    border-radius: inherit;
+  }
+
+  .tile-label {
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    aspect-ratio: 4 / 3;
+    padding: 8px 12px 12px;
+    text-align: center;
+    line-height: 1.3;
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    font-weight: 600;
+    color: var(--light);
+    background: linear-gradient(
+      to top,
+      var(--accent_color) 20%,
+      transparent 100%
+    );
+    text-shadow: -1px 0 hsla(0, 0%, 50%, 0.3), 0 1px hsla(0, 0%, 50%, 0.3),
+      1px 0 hsla(0, 0%, 50%, 0.3), 0 -1px hsla(0, 0%, 50%, 0.3);
+  }
+
+  &:after {
+    z-index: 2;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+  }
+}
+
+.tile {
+  .tile-label {
+    transition: transform 0.2s;
+  }
+  &:after {
+    outline: 5px solid transparent;
+    outline-offset: -4px;
+
+    transition: outline 0.2s;
+  }
+
+  &:hover,
+  a:focus & {
+    .tile-label {
+      transform: translateY(-99%);
+    }
+    &:after {
+      outline-color: var(--accent_color);
+    }
+  }
 }

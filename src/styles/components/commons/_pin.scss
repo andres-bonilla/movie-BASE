@@ -1,0 +1,19 @@
+.pin-link {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 20px;
+
+  .pin {
+    overflow: hidden;
+    height: 100%;
+    width: auto;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
