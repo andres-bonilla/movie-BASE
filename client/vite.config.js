@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: process.env.MOVIEBASE_API,
+        target: "https://moviebase-api.onrender.com",
         changeOrigin: true,
         secure: false,
         ws: true,
