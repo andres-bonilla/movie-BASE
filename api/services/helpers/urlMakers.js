@@ -34,4 +34,4 @@ exports.urlTopListMaker = () => [
   },
 ];
 
-// `${urlTmdb}/movie/latest?${apiKey}&${apiLang}`,
+//    `${urlTmdb}/movie/latest?${apiKey}&${apiLang}`,
