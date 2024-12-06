@@ -11,7 +11,7 @@ export const Home = () => {
   const { status, data, error } = useApi(
     {
       method: "get",
-      url: `/data/top_lists`,
+      url: `/api/data/top_lists`,
     },
     700 /*animated transition - out duration*/
   );
