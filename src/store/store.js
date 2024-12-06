@@ -9,14 +9,14 @@ const logger = createLogger({
   collapsed: true,
 });
 
-const middleware = (getDefaultMiddleware) =>
+const middleware = getDefaultMiddleware =>
   getDefaultMiddleware().concat(logger);
 
 export const store = configureStore({
   middleware,
   reducer: {
     user: userReducer,
-    search: searchReducer,
     img: imgReducer,
+    search: searchReducer,
   },
 });
