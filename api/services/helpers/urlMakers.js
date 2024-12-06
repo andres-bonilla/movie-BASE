@@ -1,5 +1,5 @@
 const urlTmdb = "https://api.themoviedb.org/3",
-  apiKey = "api_key=22d3fd94d0f9fd60515cd799770db756",
+  apiKey = "api_key=" + process.env.TMDB_API_KEY,
   apiLang = "language=es-MX",
   extras = "similar,recommendations,credits,videos,watch/providers";
 
