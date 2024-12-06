@@ -88,6 +88,7 @@ app.get("/", function (req, res) {
 });
 
 db.sync({ force: !true }).then(() => {
+  console.log("api_key=" + process.env.TMDB_API_KEY);
   console.log("Base de datos sincronizada");
   app.listen(port, () => {
     console.log(
