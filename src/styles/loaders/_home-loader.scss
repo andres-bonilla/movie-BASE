@@ -1,0 +1,58 @@
+@use "../animations" as *;
+
+#content:has(.home-load) {
+  justify-content: center;
+  align-items: center;
+}
+
+.home-load {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 76px;
+
+  .top {
+    height: 35px;
+
+    .bar {
+      width: 76px;
+      height: 5px;
+      background-color: var(--loader_color);
+
+      &:nth-child(1) {
+        border-radius: 3px 3px 0px 0px;
+      }
+    }
+  }
+  .bottom {
+    display: flex;
+    justify-content: space-between;
+
+    .boxes {
+      border-radius: 3px 3px 0px 0px;
+      width: 22px;
+      height: 30px;
+      background-color: var(--loader_color);
+    }
+  }
+}
+
+.home-load {
+  .top .bar {
+    animation: fadePulse 3s infinite;
+
+    @for $i from 1 through 7 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{($i - 1) * 0.2}s;
+      }
+    }
+  }
+  .bottom .boxes {
+    animation: fadePulse 1.5s infinite;
+    @for $i from 1 through 3 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{$i * 0.25}s;
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+@use "../animations" as *;
+
+.tile-load {
+  display: flex;
+  width: 25px;
+
+  .bar {
+    width: 5px;
+    height: 37.5px;
+    background-color: var(--loader_color);
+
+    &:nth-child(1) {
+      border-radius: 10px 0px 0px 0px;
+    }
+    &:nth-child(5) {
+      border-radius: 0px 10px 0px 0px;
+    }
+  }
+}
+
+.tile-load .bar {
+  animation: fadePulse 2s infinite;
+
+  @for $i from 1 through 5 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{($i - 1) * 0.2}s;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+@use "../animations" as *;
+
+.load-box:has(.pin-load) {
+  height: 100%;
+  align-items: center;
+}
+
+.pin-load {
+  display: flex;
+  width: 25px;
+  clip-path: circle(50% at 50% 50%);
+
+  .bar {
+    width: 5px;
+    height: 25px;
+    background-color: var(--loader_color);
+  }
+}
+
+.pin-load .bar {
+  animation: fadePulse 2s infinite;
+
+  @for $i from 1 through 5 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{($i - 1) * 0.2}s;
+    }
+  }
+}

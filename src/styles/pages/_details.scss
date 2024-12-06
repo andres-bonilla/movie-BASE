@@ -1,59 +1,22 @@
 @use "../variables" as *;
-@use "../animations" as *;
 
-.poster {
-  width: clamp(200px, 20%, 360px);
-  border-radius: 16px 16px 0px 0px;
-  position: fixed;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 3px 10px;
-  animation: showing 1s;
+.logo-on-details {
+  position: fixed !important;
+  margin-left: calc(($belt_width - 148px) / 2) !important;
+
+  transition: margin 0.7s;
 }
 
 .with-left-space {
-  margin-left: min(420px, 30%);
-}
-
-.details {
-  padding-bottom: 12px;
-  color: $text_color;
-  border-bottom: 1px solid black;
-  animation: showing 1s;
-}
-
-.details-title {
-  text-align: center;
-  margin-top: 0;
-}
-
-.related-title {
-  text-align: center;
-  margin-top: 48px;
-}
-
-.related-container {
-  overflow-x: auto;
-  margin-bottom: 72px;
-
-  .list {
-    width: clamp(1544px, 240%, 2444px);
-  }
+  margin-left: calc($belt_width + 48px);
 }
 
 @media (max-width: 950px) {
-  .poster {
-    position: static;
-    width: 230px;
-    margin: 0px auto;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 3px 10px;
+  .logo-on-details {
+    position: static !important;
+    margin-left: 0 !important;
   }
-
-  .details,
-  .related-title,
-  .related-container {
+  .with-left-space {
     margin-left: 0;
-  }
-
-  .related-container .list {
-    width: 1704px;
   }
 }

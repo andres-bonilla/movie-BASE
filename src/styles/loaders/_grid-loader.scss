@@ -1,0 +1,36 @@
+@use "../animations" as *;
+
+.grid-load {
+  display: flex;
+  margin: auto;
+  align-self: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  width: 70px;
+
+  .boxes {
+    border-radius: 3px 3px 0px 0px;
+    width: 20px;
+    height: 23px;
+    background-color: var(--loader_color);
+    animation: fadePulse 1.5s infinite;
+
+    &:nth-child(5) {
+      animation-delay: 0s;
+    }
+    &:nth-child(1),
+    &:nth-child(6),
+    &:nth-child(8) {
+      animation-delay: 0.25s;
+    }
+    &:nth-child(3),
+    &:nth-child(7) {
+      animation-delay: 0.5s;
+    }
+    &:nth-child(2),
+    &:nth-child(4),
+    &:nth-child(9) {
+      animation-delay: 0.75s;
+    }
+  }
+}
