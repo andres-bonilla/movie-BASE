@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import apiClient from "./axiosClient";
+import apiClient from "../helpers/axiosClient";
 
 export const useApi = (config, delay = 0) => {
   // "idle", "delaying", "loading", "success", "error"
