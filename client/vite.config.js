@@ -7,12 +7,16 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:3001",
+        target: process.env.MOVIEBASE_API,
         changeOrigin: true,
         secure: false,
         ws: true,
       },
     },
-    port: "3000",
+    port: process.env.NODE_ENV === "development" ? "3000" : undefined,
+  },
+  build: {
+    outDir: "deploy",
   },
 });
+/**/

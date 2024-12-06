@@ -10,7 +10,7 @@ const express = require("express"),
   LocalStrategy = require("passport-local").Strategy;
 
 const app = express(),
-  port = 3001;
+  port = process.env.PORT || 3001;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -97,3 +97,4 @@ db.sync({ force: !true }).then(() => {
     );
   });
 });
+/**/
