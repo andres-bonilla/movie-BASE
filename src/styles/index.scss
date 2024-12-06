@@ -2,7 +2,9 @@
 @use "./resets.scss";
 @use "./base.scss";
 @use "./main.scss";
-@use "./animations";
+@use "./animations.scss";
+@use "./colors.scss";
+@use "./utils.scss";
 
 //Layouts
 @use "./layouts/head.scss";
@@ -12,11 +14,30 @@
 @use "./pages/home.scss";
 @use "./pages/details.scss";
 
+//Loaders
+@use "./loaders/load-box.scss";
+@use "./loaders/details-loader.scss";
+@use "./loaders/grid-loader.scss";
+@use "./loaders/home-loader.scss";
+@use "./loaders/pin-loader.scss";
+@use "./loaders/tile-loader.scss";
+
 //Components
 @use "./components/hero.scss";
 @use "./components/grid.scss";
 @use "./components/page-nav.scss";
 @use "./components/search.scss";
 @use "./components/tabs.scss";
-@use "./components/commons/list.scss";
+@use "./components/belt.scss";
+@use "./components/info.scss";
+@use "./components/related.scss";
+
+@use "./components/commons/pin.scss";
+@use "./components/commons/slider.scss";
+@use "./components/commons/slider-header.scss";
 @use "./components/commons/tile.scss";
+@use "./components/commons/tile-indicators.scss";
+
+@use "./components/utils/error-message.scss";
+@use "./components/utils/alert.scss";
+@use "./components/utils/button.scss";

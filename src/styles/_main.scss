@@ -1,11 +1,15 @@
+@use "./variables" as *;
+
 #content {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 80%;
-  min-height: 120vh;
+  min-height: calc(100vh - 88px - 64px);
   margin: 0 auto;
-  margin-bottom: 128px;
   margin-top: 88px;
+  margin-bottom: 64px;
+  color: var(--main_color);
 }
 
 @media (max-width: 768px) {
