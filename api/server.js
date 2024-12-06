@@ -1,4 +1,5 @@
 const express = require("express"),
+  cors = require("cors"),
   morgan = require("morgan"),
   router = require("./routes"),
   db = require("./models/db"),
@@ -9,8 +10,25 @@ const express = require("express"),
   bodyParser = require("body-parser"),
   LocalStrategy = require("passport-local").Strategy;
 
-const app = express(),
-  port = process.env.PORT || 3001;
+const app = express();
+const port = process.env.PORT || 3001;
+
+const allowedOrigins = [
+  "https://moviebase-cph2.onrender.com", // Production
+  "http://localhost:3000", // Dev
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+  })
+);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
