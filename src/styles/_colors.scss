@@ -1,0 +1,39 @@
+#root {
+  --light: #fdf6ec;
+  --dark: #262626;
+
+  --disabled_color: #e5dfd7;
+  --loader_color: #a6a6a699;
+  --highlight_color: #8080801c;
+
+  --gray: #6b6b6b;
+  --light_gray: #bfbfbf;
+
+  --violet: #bd519b;
+  --red: #de443f;
+  --skyblue: #55b4dd;
+  --yellow: #f5d03d;
+  --green: #47c25c;
+}
+
+.dark-mode {
+  --main_color: var(--light);
+  --alter_color: var(--dark);
+}
+
+.light-mode {
+  --main_color: var(--dark);
+  --alter_color: var(--light);
+}
+
+.movie-mode {
+  --accent_color: var(--red);
+}
+
+.tv-mode {
+  --accent_color: var(--skyblue);
+}
+
+.person-mode {
+  --accent_color: var(--yellow);
+}

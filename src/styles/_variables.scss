@@ -2,7 +2,6 @@ $font_fallback: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
   "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
   sans-serif;
 
-//   Colors
+//   Sizes;
 
-$back_color: #fdf6ec;
-$text_color: #262626;
+$belt_width: min(clamp(200px, 25vw, 360px), calc(50vh / 3 * 2));

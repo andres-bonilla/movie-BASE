@@ -1,0 +1,39 @@
+.hidden {
+  display: none;
+}
+
+.is-not-visible {
+  opacity: 0;
+}
+
+.rotate-180 {
+  rotate: 180deg;
+}
+
+.float {
+  z-index: 12;
+  position: fixed !important;
+}
+
+.no-link-style {
+  color: inherit;
+  text-decoration: none;
+}
+
+.disable-link {
+  pointer-events: initial;
+}
+
+.with-shadow {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 3px 10px;
+}
+
+.hidden-scroll {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari y Opera */
+  }
+}
