@@ -34,7 +34,7 @@ passport.use(
     },
     (email, password, done) => {
       User.findOne({ where: { email } })
-        .then((usuario) => {
+        .then(usuario => {
           if (!usuario)
             return done(null, false, {
               message: "Email y/o contraseña incorrectos",
@@ -42,7 +42,7 @@ passport.use(
 
           return usuario
             .hash(password, usuario.salt)
-            .then((hash) => {
+            .then(hash => {
               return {
                 usuario,
                 hash,
@@ -60,7 +60,7 @@ passport.use(
               }
             });
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
           return done(null, false, {
             message: "ERROR",
@@ -77,14 +77,14 @@ passport.serializeUser((user, done) => {
 // How we look for the user
 passport.deserializeUser((id, done) => {
   User.findByPk(id)
-    .then((user) => done(null, user))
-    .catch((err) => done(err));
+    .then(user => done(null, user))
+    .catch(err => done(err));
 });
 
 app.use("/api", router);
 
 app.get("/", function (req, res) {
-  res.send("Welcome to Passport with Sequelize");
+  res.send("Welcome to the MB API");
 });
 
 db.sync({ force: !true }).then(() => {
