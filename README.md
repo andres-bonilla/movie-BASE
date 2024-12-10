@@ -4,9 +4,9 @@ A website that integrates the TMDB API to search and explore movies, series and 
 
 ### Table of Contents
 - [Features](#-features)
-- [Techs Used](#%EF%B8%8F-techs-used)
+- [Techs Used](#-techs-used)
 - [Demo](#-demo)
-- [License](#license)
+- [License](#-license)
 
 ## 🚀 Features
 - Search for movies, TV shows, and celebrities.
