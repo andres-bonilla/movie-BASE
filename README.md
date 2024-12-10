@@ -1,34 +1,35 @@
-# 🎬 Welcome to movie BASE! 🎥
+# 🎬 movie BASE
 
-**A website about movies and series**.
+A website that integrates the TMDB API to search and explore movies, series and celebrities. The site provides an engaging visual experience with smooth transition animations while navigating between pages.
 
-## 🖥️ Web App created with React and Node.js
+## Features
+- Search for movies, TV shows, and celebrities.
+- Smooth transition animations for an improved user experience.
+- Backend API acting as an intermediary between the client and TMDB, processing data before sending it to the client.
+- Planned features: User management with favorites and watched lists (coming soon).
 
-![Logo](src/assets/mb.svg)
+## Techs Used
 
----
+### Frontend
+- **React**: JavaScript library for building the user interface.
+- **Redux Toolkit**: State management for efficient data handling.
+- **Axios**: For making HTTP requests to the backend and external APIs.
+- **React Router**: For routing and navigation between pages.
+- **SCSS**: For styling, with a focus on responsive design and smooth animations.
 
-## ✨ Features:
+### Backend
+- **Express**: Web framework for building the API server.
+- **Axios**: For making HTTP requests to the TMDB API.
+- **bcrypt**: For password hashing (future user management feature).
+- **Passport**: Authentication middleware (future user management feature).
+- **pg** & **Sequelize**: PostgreSQL and ORM for user data storage (future feature for managing favorites and watched lists).
 
-- 🔍 **Search and List Movies/Series**: Display a wide variety of movies and series by consuming data from [The Movie Database (TMDB)](https://www.themoviedb.org/) API.
-- 🎞️ **View Details**: Access detailed information for each movie or series, including cast, plot, release date and more.
-- ? 👤 **User Management**: Create, log in, and log out users, with session persistence on the back-end.
-- ? ❤️ **Favorites Management**: Add, view, and remove movies or series from a personalized favorites list.
 
----
+## Demo
+You can try out the live demo of the site [here](https://moviebase-cph2.onrender.com).
 
-## 🛠️ Tech Stack:
-
-### **Client**:
-
-- React ⚛️
-- Redux 🔄
-
-### **Backend**:
-
-- Node.js 🟩
-- Express 🚀
-- PSQL
+## License
+This project is licensed under the MIT License - see the [LICENSE](licens) file for details.
 
 ---
 
