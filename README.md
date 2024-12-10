@@ -3,9 +3,9 @@
 A website that integrates the TMDB API to search and explore movies, series and celebrities. The site provides an engaging visual experience with smooth transition animations while navigating between pages.
 
 ### Table of Contents
-- [Features](#features)
-- [Techs Used](#techs-used)
-- [Demo](#Demo)
+- [Features](#-features)
+- [Techs Used](#%EF%B8%8F-techs-used)
+- [Demo](#-demo)
 - [License](#license)
 
 ## 🚀 Features
@@ -31,8 +31,8 @@ A website that integrates the TMDB API to search and explore movies, series and 
 ## 🌐 Demo
 You can try out the live demo of the site [here](https://moviebase-cph2.onrender.com).
 
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.📜 
+## 📜 License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. 
 
 ---
 
