@@ -2,8 +2,8 @@ const express = require("express"),
   cors = require("cors"),
   morgan = require("morgan"),
   router = require("./routes"),
-  db = require("./models/db"),
-  User = require("./models/user"),
+  //db = require("./models/db"),
+  //User = require("./models/user"),
   cookieParser = require("cookie-parser"),
   session = require("express-session"),
   passport = require("passport"),
@@ -51,7 +51,8 @@ passport.use(
       passwordField: "password",
     },
     (email, password, done) => {
-      User.findOne({ where: { email } })
+      return done(null, false, { message: "Autenticación desactivada" });
+      /*User.findOne({ where: { email } })
         .then(usuario => {
           if (!usuario)
             return done(null, false, {
@@ -83,20 +84,21 @@ passport.use(
           return done(null, false, {
             message: "ERROR",
           });
-        });
+        });*/
     }
   )
 );
 // How we save the user
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+  done(null, user?.id);
 });
 
 // How we look for the user
 passport.deserializeUser((id, done) => {
-  User.findByPk(id)
+  done(null, null);
+  /*User.findByPk(id)
     .then(user => done(null, user))
-    .catch(err => done(err));
+    .catch(err => done(err));*/
 });
 
 app.use("/api", router);
@@ -105,9 +107,9 @@ app.get("/", function (req, res) {
   res.send("Welcome to the MB API");
 });
 
-db.sync({ force: !true }).then(() => {
+/*db.sync({ force: !true }).then(() => {
   console.log("api_key=" + process.env.TMDB_API_KEY);
-  console.log("Base de datos sincronizada");
+  console.log("Base de datos sincronizada");*/
   app.listen(port, () => {
     console.log(
       `\nYou can now view "Movie Base" in the browser.\n\n` +
@@ -115,5 +117,5 @@ db.sync({ force: !true }).then(() => {
         `  Server:           http://localhost:${port}\n`
     );
   });
-});
-/**/
+//});
+
