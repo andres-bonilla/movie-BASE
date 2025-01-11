@@ -11,7 +11,6 @@ export const getContentByStatus = (type, status, err, isEmpty) => {
     success: null,
     empty: <ErrorMessage type={type === "app" ? "imageLoad" : "dataLoad"} />,
   };
-  console.log(status);
   if (status === "success" && isEmpty) return contentMap.empty;
   return contentMap[status];
 };
