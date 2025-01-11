@@ -31,7 +31,7 @@ export const App = () => {
     if (status === "success" && data) dispatch(setImgData(data));
   }, [status]);
 
-  const contentByStatus = getContentByStatus("app", status || "loading", error, !data);
+  const contentByStatus = getContentByStatus("app", status, error, !data);
 
   const colorMode = "light-mode";
 
